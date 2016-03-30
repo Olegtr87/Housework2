@@ -1,27 +1,37 @@
 package by.epam.trainig.java.vasilevskiy.hw2;
 
-import java.util.ArrayList ;
+import java.util.ArrayList;
 
+/**
+ * Class contains name employee and array stationary from employee.
+ * 
+ * @author Oleg
+ *
+ */
 public class Employee {
-	public String name;
-	public ArrayList<Stationery> arrayStationery;
-	
-	public String getName() {
-		return name;
-	}
+	private String name;
+	private ArrayList<Stationery> arrayStationery;
+
 	public Employee(String name, ArrayList<Stationery> arrayStationery) {
 		super();
 		this.name = name;
 		this.arrayStationery = arrayStationery;
 	}
+
+	public String getName() {
+		return name;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Stationery> getSetStationery() {
+
+	public ArrayList<Stationery> getArrayStationery() {
 		return arrayStationery;
 	}
-	public void setSetStationery(ArrayList<Stationery> setStationery) {
-		this.arrayStationery = setStationery;
+
+	public void setArrayStationery(ArrayList<Stationery> arrayStationery) {
+		this.arrayStationery = arrayStationery;
 	}
-	
+
 }

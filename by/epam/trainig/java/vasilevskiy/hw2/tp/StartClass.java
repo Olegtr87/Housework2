@@ -6,9 +6,19 @@ import java.util.Arrays;
 import java.util.Scanner;
 import by.epam.trainig.java.vasilevskiy.hw2.*;
 
+/**
+ * Class create employee with array stationery, calculate and show cost
+ * stationery an employee. Sorting arrays from Comparator.
+ * 
+ * @author Oleg
+ *
+ */
 public class StartClass {
 	private static Department dep;
 	private static String nameEmployee;
+	private static ArrayList<Stationery> arrayForOleg;
+	public static final String ENTER_NAME = "–í–≤–µ–¥–∏—Ç–µ –∏–º—è —Å–æ—Ç—Ä—É–¥–Ω–∏–∫–∞: ";
+	public static final String NOT_NAME = "–°–æ—Ç—Ä—É–¥–Ω–∏–∫–∞ —Å —Ç–∞–∫–∏–º –∏–º–µ–Ω–µ–º –Ω–µ —Å—É—â–µ—Å—Ç–≤—É–µ—Ç!";
 
 	public static void main(String[] args) {
 		addEmployee();
@@ -16,45 +26,50 @@ public class StartClass {
 		summ(dep, nameEmployee);
 	}
 
+	// Add employee and stationery for employee
 	private static void addEmployee() {
-		ArrayList<Stationery> arrayForOleg = new ArrayList<Stationery>();
+		arrayForOleg = new ArrayList<Stationery>();
 		arrayForOleg.add(new Pen("Parker", 10000, "Red", "Blue"));
 		arrayForOleg.add(new Knife("Blade", 5000, "Yellow", 2));
 		arrayForOleg.add(new Pencil("Mark", 15000, "Green", "Black"));
-//		 Sorting test
-//		 Stationery[] array=new Stationery[3];
-//		 arrayForOleg.toArray(array);
-//		 Arrays.sort(array);
-//		 for(int i = 0; i < array.length; i++)
-//          {
-//            System.out.println(array[i].cost);
-//          }
 		Employee oleg = new Employee("Oleg", arrayForOleg);
 		dep = new Department();
-		dep.arrayEmployee.add(oleg);
+		dep.getArrayEmployee().add(oleg);
 	}
 
+	// Test sorting array with Comparator
+	private void testSort() {
+		// Sorting test
+		Stationery[] array = new Stationery[3];
+		arrayForOleg.toArray(array);
+		Arrays.sort(array, new CompByName());
+		// Arrays.sort(array, new CompByCost());
+		// Arrays.sort(array, new CompByCostAndName());
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i].getName());
+		}
+
+	}
+
+	// Enter name employee from console
 	private static void nameInConsole() {
-		System.out.print("¬‚Â‰ËÚÂ ËÏˇ ÒÓÚÛ‰ÌËÍ‡: ");
+		System.out.print(ENTER_NAME);
 		Scanner scanner = new Scanner(System.in);
 		nameEmployee = scanner.nextLine();
 	}
 
-	// private static void sort(){
-	//
-	// }
-
+	// Show summ stationery for employee
 	private static void summ(Department dep, String nameEmployee) {
 		int summ;
-		for (Employee em : dep.arrayEmployee) {
+		for (Employee em : dep.getArrayEmployee()) {
 			summ = 0;
-			if (em.name.equals(nameEmployee)) {
-				for (Stationery st : em.arrayStationery) {
-					summ = summ + st.cost;
+			if (em.getName().equals(nameEmployee)) {
+				for (Stationery st : em.getArrayStationery()) {
+					summ = summ + st.getCost();
 				}
-				System.out.println("ƒÎˇ ÒÓÚÛ‰ÌËÍ‡ " + em.name + " ÒÚÓËÏÓÒÚ¸ Í‡ÌˆÚÓ‚‡Ó‚ " + summ);
+				System.out.println("–£ —Å–æ—Ç—Ä—É–¥–Ω–∏–∫–∞ " + em.getName() + " —Å—Ç–æ–∏–º–æ—Å—Ç—å –∫–∞–Ω—Ü—Ç–æ–≤–∞—Ä–æ–≤ " + summ);
 			} else
-				System.out.println("—ÓÚÛ‰ÌËÍ‡ Ò Ú‡ÍËÏ ËÏÂÌÂÏ ÌÂ ÒÛ˘ÂÒÚ‚ÛÂÚ!");
+				System.out.println(NOT_NAME);
 		}
 	}
 }

@@ -1,33 +1,41 @@
 package by.epam.trainig.java.vasilevskiy.hw2;
 
-public abstract class Stationery implements Comparable {
-	public String name;
-	public int cost;
-	public String color;
+import java.util.Comparator;
+
+/**
+ * Class Stationery. Contains name, cost, color.
+ * 
+ * @author Oleg
+ *
+ */
+public abstract class Stationery {
+	private String name;
+	private int cost;
+	private String color;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	public abstract void action();
-	
-//  Sorting from cost
-	@Override
-	public int compareTo(Object obj) {
-		Stationery entry = (Stationery) obj;
-		if (cost > entry.cost)
-			return 1;
-		else if (cost < entry.cost)
-			return -1;
-		else
-			return 0;
-	}
-//  Sorting from name
-//	@Override
-//	public int compareTo(Object obj) {
-//		Stationery entry = (Stationery) obj;
-//		if (name > entry.name)
-//			return 1;
-//		else if (name < entry.name)
-//			return -1;
-//		else
-//			return 0;
-//	}
-
 }
